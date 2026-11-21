@@ -48,8 +48,9 @@ h2{font:600 20px/1.2 Spectral,Georgia,serif;margin:28px 0 10px;padding-bottom:6p
 .meta{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:14px;color:var(--mute)}
 .meta b{color:var(--ink);font-weight:600}
 .sc{font-variant-numeric:tabular-nums;color:var(--acc);font-weight:600;white-space:nowrap}
-.v{grid-template-columns:minmax(0,1fr)}
-.badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.v{grid-template-columns:minmax(0,1fr) auto}
+.badges{display:flex;flex-wrap:wrap;gap:8px}
+.v .badges{grid-column:2;grid-row:1/3;align-self:center;justify-content:flex-end;flex-wrap:nowrap}
 .st{display:inline-flex;align-items:center;gap:7px;padding:6px 12px 6px 7px;border-radius:999px;font-weight:600;font-size:14px;white-space:nowrap;border:1.5px solid currentColor}
 .st i{display:grid;place-items:center;width:20px;height:20px;border-radius:50%;font-style:normal;font-size:13px;line-height:1;background:currentColor}
 .st i::before{color:var(--bg)}
@@ -63,7 +64,8 @@ mark{background:light-dark(#dfe2ff,#2a2f6b);color:inherit;border-radius:3px;padd
 .key{display:flex;flex-wrap:wrap;gap:6px 20px;font-size:13px;color:var(--mute);margin-top:36px;padding-top:14px;border-top:1px solid var(--line)}
 @keyframes in{from{opacity:0;transform:translateY(3px)}}
 @media(prefers-reduced-motion:reduce){.v{animation:none}}
-@media(max-width:600px){.v{grid-template-columns:1fr}#q{font-size:17px}}
+@media(max-width:720px){.v{grid-template-columns:1fr}.v .badges{grid-column:auto;grid-row:auto;justify-content:flex-start;flex-wrap:wrap;margin-top:4px}}
+@media(max-width:600px){#q{font-size:17px}}
 </style>
 </head>
 <body>
