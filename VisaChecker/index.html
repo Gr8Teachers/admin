@@ -112,7 +112,7 @@ mark{background:light-dark(#dfe2ff,#2a2f6b);color:inherit;border-radius:3px;padd
     <span><b>PR</b> Permanent resident</span>
     <span><b>TR</b> Temporary resident</span>
     <span><b>TR Protection</b> Temporary protection</span>
-    <span><b>Enrolment</b> Only shown when no funding applies, because a visa eligible for AMEP, SEE or Fee-Free is always eligible to enrol. Green: eligible to enrol ("with fees" means not eligible for AMEP, SEE or Fee-Free, so fee for service). Yellow: eligible to enrol, but the visa often has study conditions, check VEVO. Red: ineligible to enrol as a domestic student (Student visas, refer to TAFE NSW International). Based on the TAFE NSW Visa Holders TVH and PVH fact sheet, April 2026 V16.</span>
+    <span><b>Enrolment</b> Only shown when the visa isn't eligible for AMEP, SEE or Fee-Free. Green: eligible to enrol ("with fees" means not eligible for AMEP, SEE or Fee-Free, so fee for service). Yellow: eligible to enrol, but the visa often has study conditions, check VEVO. Red: ineligible to enrol as a domestic student (Student visas, refer to TAFE NSW International). Based on the TAFE NSW Visa Holders TVH and PVH fact sheet, April 2026 V16.</span>
     <span><b>AMEP</b> Aged 18+ with little or no English, and a permanent resident, an eligible temporary visa holder (AMEP list, Sept 2023), or a citizen who held an eligible visa in the past.</span>
     <span><b>SEE</b> Aged 15+ and left school, and an Australian citizen, a permanent visa holder, on a provisional or temporary visa with working rights and eligible for AMEP, or a Pacific Australia Labour Mobility (PALM) visa holder. Yellow means it depends on work rights or the visa stream.</span>
     <span><b>Fee free: check</b> Not in the source sheet. Confirm with the TAFE NSW fact sheet.</span>
@@ -125,7 +125,7 @@ const D=[["Electronic Travel Authority (subclass 601)","Visitor visa","TR","No",
 const V=D.map(([name,type,status,elig,cat,amep,see,study],i)=>{
   const k=elig==='Yes'?'y':elig.startsWith('Yes')?'c':elig==='Check'?'u':'n';
   const nums=(name.match(/\d{3}/g)||[]);
-  return{i,name,type,status,elig,cat,k,amep,see,study,pay:study!=='r'&&!amep&&!see&&k==='n',funded:!!amep||see==='PR'||see==='T'||k==='y',nums,hay:(name+' '+type+' '+status).toLowerCase()};
+  return{i,name,type,status,elig,cat,k,amep,see,study,pay:study!=='r'&&!amep&&!see&&k==='n',funded:!!amep||!!see||k!=='n',nums,hay:(name+' '+type+' '+status).toLowerCase()};
 });
 const cats=[...new Set(V.map(v=>v.cat))];
 const sel=document.getElementById('cat'),q=document.getElementById('q'),out=document.getElementById('out'),count=document.getElementById('count'),clr=document.getElementById('clear');
