@@ -56,6 +56,7 @@ h2{font:600 20px/1.2 Spectral,Georgia,serif;margin:28px 0 10px;padding-bottom:6p
 .st i{display:grid;place-items:center;width:20px;height:20px;border-radius:50%;font-style:normal;font-size:13px;line-height:1;background:currentColor}
 .st i::before{color:var(--bg)}
 .st.tag{border-radius:4px;border-width:1.5px;padding:3px 9px 3px 5px;font-size:12.5px;gap:5px;background:transparent}
+.st.fees{font-style:italic}
 .st.tag i{border-radius:3px;width:15px;height:15px;font-size:10px}
 .sep{width:1px;align-self:stretch;margin:2px 4px;background:var(--line)}
 .st.g{color:var(--yes);background:var(--yesbg)}.st.a{color:var(--cond);background:var(--condbg)}.st.r{color:var(--no);background:var(--nobg)}
@@ -154,7 +155,7 @@ function card(v,terms){
   return `<article class="v">
     <h3>${hl(v.name,terms)}</h3>
     <div class="meta"><span>Type <b>${hl(v.type,terms)}</b></span><span>Residency <b>${esc(v.status)}</b></span></div>
-    <div class="right"><div class="badges">${pill('AMEP',v.amep?'g':'r',amepLabel[v.amep].replace(/^AMEP: /,''))}${pill('SEE',seeSt[v.see],seeLabel[v.see].replace(/^SEE: /,''))}${pill('Fee-Free',feeSt[v.k],label[v.k])}</div>${v.funded?'':pill({g:v.pay?'Eligible to enrol with fees':'Eligible to enrol',a:v.pay?'Eligible to enrol with fees':'Eligible to enrol',r:'Ineligible to enrol'}[v.study],v.study,{g:v.pay?'can enrol, fee for service':'no usual study restriction',a:'check visa study conditions',r:'cannot enrol as a domestic student'}[v.study],'tag')}</div>
+    <div class="right"><div class="badges">${pill('AMEP',v.amep?'g':'r',amepLabel[v.amep].replace(/^AMEP: /,''))}${pill('SEE',seeSt[v.see],seeLabel[v.see].replace(/^SEE: /,''))}${pill('Fee-Free',feeSt[v.k],label[v.k])}</div>${v.funded?'':pill({g:v.pay?'Eligible to enrol with fees':'Eligible to enrol',a:v.pay?'Eligible to enrol with fees':'Eligible to enrol',r:'Ineligible to enrol'}[v.study],v.study,{g:v.pay?'can enrol, fee for service':'no usual study restriction',a:'check visa study conditions',r:'cannot enrol as a domestic student'}[v.study],v.pay?'tag fees':'tag')}</div>
     ${v.k==='c'?`<div class="cond"><strong>Fee-Free condition:</strong> ${esc(v.elig.replace(/^Yes\s*/,'').replace(/^upon/,'Upon'))}.</div>`:''}
     ${v.study==='r'?`<div class="cond no"><strong>Ineligible to enrol:</strong> student visa holders can't enrol as domestic students. Refer to TAFE NSW International (CRICOS courses and some short courses only).</div>`:''}
     ${v.pay?`<div class="cond fee"><strong>Enrol with fees:</strong> can enrol, but not eligible for AMEP, SEE or Fee-Free. Enrol as fee for service (commercial fee)${v.study==='a'?' within any visa study limits':''}.</div>`:''}
